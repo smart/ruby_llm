@@ -51,6 +51,7 @@ module RubyLLM
       case content
       when Content then content.format
       when String then Content.new(content).format
+      when nil then ""
       else content
       end
     end
