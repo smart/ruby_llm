@@ -35,6 +35,7 @@ RSpec.describe RubyLLM::Chat do
     gemini-2.0-flash
     deepseek-chat
     gpt-4o-mini
+    gpt-4.1
   ].freeze
 
   describe 'error handling' do
@@ -107,7 +108,7 @@ RSpec.describe RubyLLM::Chat do
 
         it 'handles context length exceeded errors' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
           # Create a huge conversation
-          massive_text = 'a' * 1_000_000
+          massive_text = 'abc' * 1_500_000
 
           # Create a few copies in the conversation
           5.times do
