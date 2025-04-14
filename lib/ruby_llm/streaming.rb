@@ -61,11 +61,13 @@ module RubyLLM
 
     def handle_failed_response(chunk, buffer, env)
       buffer << chunk
-      error_data = JSON.parse(buffer)
-      error_response = env.merge(body: error_data)
-      ErrorMiddleware.parse_error(provider: self, response: error_response)
-    rescue JSON::ParserError
-      RubyLLM.logger.debug "Accumulating error chunk: #{chunk}"
+      begin
+        error_data = JSON.parse(buffer)
+        error_response = env.merge(body: error_data)
+        ErrorMiddleware.parse_error(provider: self, response: error_response)
+      rescue JSON::ParserError
+        RubyLLM.logger.debug "Accumulating error chunk: #{chunk}"
+      end
     end
 
     def handle_sse(chunk, parser, env, &block)

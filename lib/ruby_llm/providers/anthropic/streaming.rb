@@ -15,7 +15,7 @@ module RubyLLM
           Chunk.new(
             role: :assistant,
             model_id: extract_model_id(data),
-            content: data.dig('delta', 'text'),
+            content: data.dig('delta', 'text') || "",
             input_tokens: extract_input_tokens(data),
             output_tokens: extract_output_tokens(data),
             tool_calls: extract_tool_calls(data)

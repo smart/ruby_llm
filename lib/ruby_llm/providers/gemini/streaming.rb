@@ -27,14 +27,14 @@ module RubyLLM
         end
 
         def extract_content(data)
-          return nil unless data['candidates']&.any?
+          return "" unless data['candidates']&.any?
 
           candidate = data['candidates'][0]
           parts = candidate.dig('content', 'parts')
-          return nil unless parts
+          return "" unless parts
 
           text_parts = parts.select { |p| p['text'] }
-          text_parts.map { |p| p['text'] }.join if text_parts.any?
+          text_parts.any? ? text_parts.map { |p| p['text'] }.join : ""
         end
 
         def extract_input_tokens(data)

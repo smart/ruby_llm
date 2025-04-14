@@ -32,7 +32,7 @@ module RubyLLM
     def to_message
       Message.new(
         role: :assistant,
-        content: content.empty? ? nil : content,
+        content: @content.empty? ? "" : @content,
         model_id: model_id,
         tool_calls: tool_calls_from_stream,
         input_tokens: @input_tokens.positive? ? @input_tokens : nil,
