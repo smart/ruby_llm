@@ -923,6 +923,25 @@
     }
   },
   {
+    "id": "gpt-4.1",
+    "created_at": "2025-04-14T00:00:00Z",
+    "display_name": "GPT-4.1",
+    "provider": "openai",
+    "context_window": 1048576,
+    "max_tokens": 32768,
+    "type": "chat",
+    "family": "gpt-4.1",
+    "supports_vision": true,
+    "supports_functions": true,
+    "supports_json_mode": true,
+    "input_price_per_million": 2.0,
+    "output_price_per_million": 8.0,
+    "metadata": {
+      "object": "model",
+      "owned_by": "system"
+    }
+  },
+  {
     "id": "claude-2.0",
     "created_at": "2023-07-11T00:00:00Z",
     "display_name": "Claude 2.0",

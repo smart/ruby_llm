@@ -14,7 +14,7 @@ RSpec.describe RubyLLM::Providers::OpenAI::Capabilities do # rubocop:disable RSp
     end
 
     it 'preserves temperature for non-O1 models' do
-      non_o1_models = ['gpt-4', 'gpt-4o', 'claude-3-opus']
+      non_o1_models = ['gpt-4', 'gpt-4.1', 'gpt-4o', 'claude-3-opus']
 
       non_o1_models.each do |model|
         result = described_class.normalize_temperature(0.7, model)
