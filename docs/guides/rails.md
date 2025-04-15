@@ -29,18 +29,33 @@ After reading this guide, you will know:
 
 ## Setup
 
-### Create Migrations
 
-First, generate migrations for your `Chat` and `Message` models. You'll also need a `ToolCall` model if you plan to use [Tools]({% link guides/tools.md %}).
+### Using the Generator (Recommended)
+
+The easiest way to set up RubyLLM with Rails is to use the built-in generator:
 
 ```bash
-# Generate basic models and migrations
-rails g model Chat model_id:string user:references # Example user association
-rails g model Message chat:references role:string content:text model_id:string input_tokens:integer output_tokens:integer tool_call:references
-rails g model ToolCall message:references tool_call_id:string:index name:string arguments:jsonb
+rails generate ruby_llm:install
 ```
 
-Adjust the migrations as needed (e.g., `null: false` constraints, `jsonb` type for PostgreSQL).
+This will automatically:
+1. Create the necessary migrations for chats, messages, and tool calls
+2. Create model files with appropriate `acts_as_*` methods
+3. Set up proper relationships between models
+
+After running the generator, simply run the migrations:
+
+```bash
+rails db:migrate
+```
+
+### Manual Setup
+
+If you prefer to set up manually or need to customize the implementation, follow these steps:
+
+#### 1. Create Migrations
+
+Create the necessary tables in your database:
 
 ```ruby
 # db/migrate/YYYYMMDDHHMMSS_create_chats.rb
@@ -123,8 +138,12 @@ class ToolCall < ApplicationRecord
 end
 ```
 
+<<<<<<< HEAD
 {: .note }
 The `acts_as` helpers primarily handle loading history and saving messages/tool calls related to the chat interaction. Add your application-specific logic (associations, validations, scopes, callbacks) as usual.
+=======
+#### 2. Set Up Models
+>>>>>>> 119df52 (feat: add Rails generator for RubyLLM models)
 
 ### Configure RubyLLM
 
