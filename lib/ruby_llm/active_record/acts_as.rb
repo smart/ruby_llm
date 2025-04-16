@@ -33,10 +33,11 @@ module RubyLLM
           @chat_class = chat_class.to_s
           @tool_call_class = tool_call_class.to_s
           @chat_foreign_key = "#{@chat_class.to_s.underscore.gsub('/', '_')}_id"
+          @message_foreign_key = "#{to_s.underscore.gsub('/', '_')}_id"
 
           belongs_to :chat, class_name: @chat_class, touch: touch_chat, foreign_key: @chat_foreign_key
 
-          has_many :tool_calls, class_name: @tool_call_class, dependent: :destroy
+          has_many :tool_calls, class_name: @tool_call_class, foreign_key: @message_foreign_key, dependent: :destroy
 
           belongs_to :parent_tool_call,
                      class_name: @tool_call_class,
